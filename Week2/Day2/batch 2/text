@@ -1,0 +1,6 @@
+// var :  it can be reassign the value and it can be redeclare
+// let  : it can be reassign the value (in the same scope) but it cannot be redeclare
+// const : it cannot be reassign the value (in the same scope ) and it cannot be redeclare also
+
+// == : it will check only values
+// === : it will check values along with Data type also
