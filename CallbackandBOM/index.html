@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="mytext"></p>
+    <p id="mytext1"></p>
+    <button onclick="myfun()">Start</button>
+    <button onclick="testInterval()">Interval</button>
+    <button onclick="clearInterval()">Clear</button>
+    <button id="startButton">Start Interval</button>
+    <button id="stopButton">Stop Interval</button>
+    <p id="display"></p>
+    <img src="" id="img" alt="" />
+    <button onclick="myfun()">Click</button>
+    <button onclick="stoptimout()">stop time out</button>
+
+    <button onclick="setTimeInterval()">Start Interval</button>
+    <button onclick="clearTimeInterval()">Clear Interval</button>
+    <p id="mytext">Hey</p>
+    <p id="mytext2"></p>
+    <script>
+      // callback() => arrow function =>a callback function is a function passed as an argument to another function, and then executed within that outer function to complete some kind of routine or action
+
+      function myfun(fn) {
+        let result = 10;
+        return fn(result);
+      }
+
+      function myfun2(res) {
+        return res + 10;
+      }
+
+      let res = myfun(myfun2);
+      console.log(res);
+      // drawback bcoz of asynchrounous;
+      let arr = [12, 20];
+
+      // 1
+      let maparr = arr.map(mappfun);
+
+      function mappfun(ele) {
+        return ele;
+      }
+
+      // 2
+      arr.map(function (element) {
+        return element;
+      });
+
+      // 3
+      let maparr1 = arr.map((element) => {
+        return element;
+      });
+
+      let intervalID; // Variable to store the interval ID
+
+      // setTimeout => it will execute the code after specific time frame (once)
+      // setInterval => it will execute the code after specific time frame (loop)
+
+      // 1 e.g of setTimeout
+      let myvar;
+      function myfun() {
+        myvar = setTimeout(() => {
+          document.getElementById("mytext").innerHTML = "Bhavesh";
+        }, 3000);
+      }
+
+      function stoptimout() {
+        clearTimeout(myvar);
+      }
+
+      // 1 e.g of setInterval
+      let count = 0;
+      let inter;
+      function setTimeInterval() {
+        inter = setInterval(() => {
+          count++;
+          document.getElementById("mytext2").innerHTML = count;
+        }, 1000);
+      }
+
+      function clearTimeInterval() {
+        if (count) {
+          clearInterval(inter);
+        }
+      }
+
+      // 2 e.g of setInterval
+      // Function to start the interval
+      function startInterval() {
+        if (!intervalID) {
+          // Check if the interval is already running
+          intervalID = setInterval(() => {
+            document.getElementById("display").textContent =
+              "Interval is running...";
+            console.log("Interval action executed");
+          }, 1000);
+          console.log("Interval started");
+        }
+      }
+      function myfun() {
+        setTimeout(function () {
+          document.getElementById("mytext").innerHTML = "Hey";
+        }, 1000);
+      }
+
+     
+      // BOM = brower object model => window => we can do pgm using window object
+
+      let online = navigator.onLine;
+      if (online) {
+        document.getElementById("img").innerHTML = "htt.png";
+      } else {
+        console.log("user is offline");
+      }
+      let conf = confirm(location);
+      if (conf) {
+        console.log("Confirm");
+      } else {
+        console.log("user is not accepted");
+      }
+
+      let pro = prompt("enter your age");
+      if (pro > 12) {
+        console.log("your are minor");
+      } else {
+        console.log("your are not minor");
+      }
+
+      // 3 types of popus in BOM
+      // alert()
+      // confirm()
+      // prompt()
+
+      // Timers =>
+      // setTimeout() => it will execute is code after specific time frame(once)
+      // setInterval() => it will execute is code after a specific time frame (loop)
+    </script>
+  </body>
+</html>

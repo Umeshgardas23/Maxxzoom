@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Object Example</title>
+    <style></style>
+  </head>
+  <!-- //   onload => when you want to load the content when first time page load -->
+  <body onload="onloadfun()">
+    <!-- DOM  => document object model => real dom in js -->
+    <!-- by using js -->
+    <!-- we can change the element,style, change attribute, add/remove the elements from page etc -->
+    <!-- Methods => document.getElementById("myid") ,byClassName, byTagName etc-->
+    <!-- Propeties =>docuement.getElementById("id").style, .src, href, .class, .innerHTML -->
+
+    <p
+      id="myid"
+      class="paraclass"
+      onmouseover="mouseover()"
+      onmouseout="mouseout()"
+      style="width: 30%; transition: width 3s; transition: transform 3s"
+    >
+      This is id
+    </p>
+    <p class="header" id="headerid"></p>
+    <p class="header">This is para2</p>
+    <p class="header">This is para3</p>
+
+    <div
+      id="container"
+      class="container"
+      style="
+        border: 1px solid black;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      "
+    ></div>
+    <p id="length"></p>
+    <span>This is span</span>
+    <button onclick="myfunc()">Click me</button>
+
+    <script>
+      mydiv.innerHTML = "This is changing the content";
+      mydiv.style.color = "orange";
+      mydiv.style.padding = "30px";
+
+      mydiv.style.border = "1px solid red";
+      mydiv.classList("paraclass");
+
+      const element = document.getElementsByClassName("header");
+      // const ele = document.get("name");
+      var data;
+      for (i = 0; i < element.length; i++) {
+        data += element[i].innerHTML;
+      }
+      document.getElementById("myid").innerHTML = data;
+      const bytag = document.getElementsByTagName("span");
+      const form = document.forms("formid");
+      const anchors = document.anchors("archors");
+      const elementLength = element.length;
+      document.getElementById("length").innerHTML = elementLength;
+      console.log(bytag);
+
+      var data = element[0].innerHTML + "---" + element[1].innerHTML;
+      var data;
+      for (i = 0; i < bytag.length; i++) {
+        data += bytag[i].innerHTML;
+      }
+      let header = document.getElementById("headerid");
+
+      header.textContent = "20px";
+
+      document.querySelector("#myid").textContent = "This is query selector";
+
+      document.querySelectorAll("#myid").innerHTML =
+        "This is query selector all";
+
+      header.style.padding = "20px";
+      header.style.border = "2px solid red";
+      document.write("this is write method");
+
+      //   <!-- Events => onClick, onmouseover, onmouseup, onmousedown, onfocus, onload -->
+
+      function myfun(element) {
+        element.style.background = "red";
+      }
+      function onloadfunction() {
+        header.style.color = "orange";
+      }
+
+      const container = document.createElement("div");
+
+      let mydiv = document.getElementById("myid");
+      function myfunc() {
+        mydiv.innerHTML = "this is from function";
+      }
+      function onloadfun() {
+        mydiv.innerHTML = "This is onload event";
+      }
+      function mouseover() {
+        mydiv.innerHTML = "This is mouseover event";
+        mydiv.style.background = "yellow";
+        mydiv.style.width = "40%";
+        mydiv.style.transform = "rotate(180deg)";
+      }
+      function mouseout() {
+        mydiv.innerHTML = "This is mouseout event";
+        mydiv.style.background = "white";
+        mydiv.style.width = "30%";
+        mydiv.style.transform = "rotate(0deg)";
+      }
+    </script>
+  </body>
+</html>
