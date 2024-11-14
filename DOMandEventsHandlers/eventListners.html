@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- mouse -->
+    <button id="changeColorButton">Click to Change Color</button>
+    <div
+      id="hoverDiv"
+      style="
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        margin-top: 20px;
+      "
+    >
+      Hover Over Me
+    </div>
+    <!-- form -->
+    <input
+      type="text"
+      id="typingInput"
+      placeholder="Type something..."
+      style="margin-top: 20px; width: 200px"
+    />
+    <div id="output" style="margin-top: 10px; font-weight: bold">
+      Typed Text Will Appear Here
+    </div>
+
+    <!-- Window -->
+    <div id="resizeMessage" style="margin-top: 20px">
+      Resize the window to see the effect!
+    </div>
+    <!-- Form -->
+    <form id="myForm" style="margin-top: 20px">
+      <input
+        type="text"
+        id="nameField"
+        placeholder="Enter your name"
+        required
+      />
+      <input
+        type="email"
+        id="emailField"
+        placeholder="Enter your email"
+        required
+      />
+      <button type="submit">Submit</button>
+      <div id="formMessage" style="margin-top: 10px; font-weight: bold"></div>
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nam, officia
+      quasi molestiae dicta nobis voluptas doloremque eaque ex voluptates
+    </form>
+
+    <!-- Clipboard -->
+    <textarea
+      id="clipboardArea"
+      placeholder="Copy or paste text here"
+      style="margin-top: 20px; width: 200px; height: 100px"
+    ></textarea>
+    <div
+      id="clipboardMessage"
+      style="margin-top: 10px; font-weight: bold"
+    ></div>
+
+    <!-- Media -->
+
+    <audio id="audioPlayer" controls style="margin-top: 20px">
+      <source src="audio.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <div id="audioMessage" style="margin-top: 10px; font-weight: bold"></div>
+
+    <!-- drag drop events -->
+    <div
+      id="dragItem"
+      draggable="true"
+      style="width: 100px; height: 100px; background: coral; margin-top: 20px"
+    >
+      Drag Me
+    </div>
+    <div
+      id="dropArea"
+      style="
+        width: 200px;
+        height: 200px;
+        background: lightgrey;
+        margin-top: 20px;
+      "
+    >
+      Drop Here
+    </div>
+    <div id="dragMessage" style="margin-top: 10px; font-weight: bold"></div>
+
+    <!-- mouse event script-->
+    <script>
+      // `click` event - Changes the button color on click
+      document
+        .getElementById("changeColorButton")
+        .addEventListener("click", () => {
+          document.getElementById("changeColorButton").style.backgroundColor =
+            "purple";
+          document.getElementById("changeColorButton").textContent =
+            "Color Changed!";
+        });
+
+      // `dblclick` event - Resets the button color on double-click
+      document
+        .getElementById("changeColorButton")
+        .addEventListener("dblclick", () => {
+          document.getElementById("changeColorButton").style.backgroundColor =
+            "";
+          document.getElementById("changeColorButton").textContent =
+            "Click to Change Color";
+        });
+
+      // `mouseover` and `mouseout` events - Changes the div background color on hover
+      const hoverDiv = document.getElementById("hoverDiv");
+      hoverDiv.addEventListener("mouseover", () => {
+        hoverDiv.style.backgroundColor = "lightgreen";
+        hoverDiv.textContent = "Mouse Over!";
+      });
+      hoverDiv.addEventListener("mouseout", () => {
+        hoverDiv.style.backgroundColor = "lightblue";
+        hoverDiv.textContent = "Hover Over Me";
+      });
+
+      // `mousemove` event - Display coordinates of mouse within the div
+      hoverDiv.addEventListener("mousemove", (event) => {
+        hoverDiv.textContent = `Mouse X: ${event.offsetX}, Y: ${event.offsetY}`;
+      });
+    </script>
+
+    <!-- Keyboard event script-->
+    <script>
+      //   Keyboard events
+      const typingInput = document.getElementById("typingInput");
+      const outputDiv = document.getElementById("output");
+      // `keydown` event - Changes the text color on key down
+      typingInput.addEventListener("keydown", () => {
+        outputDiv.style.color = "blue";
+      });
+
+      // `keyup` event - Changes text color back on key up
+      typingInput.addEventListener("keyup", () => {
+        outputDiv.style.color = "black";
+      });
+
+      // `input` event - Displays typed text in the div
+      typingInput.addEventListener("input", (event) => {
+        outputDiv.textContent = event.target.value;
+      });
+    </script>
+
+    <!-- form event script-->
+    <script>
+      const form = document.getElementById("myForm");
+      const formMessage = document.getElementById("formMessage");
+
+      // `submit` event - Prevent form submission and show a message
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        formMessage.textContent = "Form successfully submitted!";
+        formMessage.style.color = "green";
+      });
+
+      // `focus` and `blur` events - Change border color of input fields
+      document
+        .getElementById("nameField")
+        .addEventListener("focus", (event) => {
+          event.target.style.padding = "10px";
+          event.target.style.backgroundColor = "red";
+        });
+      document.getElementById("nameField").addEventListener("blur", (event) => {
+        event.target.style.backgroundColor = "white";
+      });
+
+      document
+        .getElementById("emailField")
+        .addEventListener("focus", (event) => {
+          event.target.style.borderColor = "green";
+        });
+      document
+        .getElementById("emailField")
+        .addEventListener("blur", (event) => {
+          event.target.style.borderColor = "";
+        });
+    </script>
+
+    <!-- window event script-->
+    <script>
+      const resizeMessage = document.getElementById("resizeMessage");
+
+      // `load` event - Change background color on page load
+      window.addEventListener("load", () => {
+        document.body.style.backgroundColor = "#f0f8ff";
+        resizeMessage.textContent = "Page loaded successfully!";
+      });
+
+      // `resize` event - Change message on window resize
+      window.addEventListener("resize", () => {
+        resizeMessage.textContent = `Window resized to ${window.innerWidth}x${window.innerHeight}`;
+      });
+
+      // `scroll` event - Change background color on scroll
+      window.addEventListener("scroll", () => {
+        document.body.style.backgroundColor =
+          window.scrollY > 300 ? "red" : "#f0f8ff";
+      });
+    </script>
+
+    <!-- clipboard event script-->
+    <script>
+      const clipboardArea = document.getElementById("clipboardArea");
+      const clipboardMessage = document.getElementById("clipboardMessage");
+
+      // `copy` event - Show message when text is copied
+      clipboardArea.addEventListener("copy", () => {
+        clipboardMessage.textContent = "Text copied!";
+        clipboardMessage.style.color = "blue";
+      });
+
+      // `paste` event - Show message when text is pasted
+      clipboardArea.addEventListener("paste", () => {
+        clipboardMessage.textContent = "Text pasted!";
+        clipboardMessage.style.color = "green";
+      });
+
+      // `cut` event - Show message when text is cut
+      clipboardArea.addEventListener("cut", () => {
+        clipboardMessage.textContent = "Text cut!";
+        clipboardMessage.style.color = "red";
+      });
+    </script>
+
+    <!-- drag and drop event script-->
+    <script>
+      const dragItem = document.getElementById("dragItem");
+      const dropArea = document.getElementById("dropArea");
+      const dragMessage = document.getElementById("dragMessage");
+
+      // `dragstart` event - Shows message when drag starts
+      dragItem.addEventListener("dragstart", () => {
+        dragMessage.textContent = "Dragging started!";
+      });
+
+      // `dragover` event - Allows drop by preventing default behavior
+      dropArea.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropArea.style.backgroundColor = "lightgreen";
+      });
+
+      // `dragleave` event - Resets background color when drag leaves
+      dropArea.addEventListener("dragleave", () => {
+        dropArea.style.backgroundColor = "lightgrey";
+      });
+
+      // `drop` event - Moves dragged item and shows message
+      dropArea.addEventListener("drop", (event) => {
+        event.preventDefault();
+        dropArea.appendChild(dragItem);
+        dragMessage.textContent = "Dropped successfully!";
+        dropArea.style.backgroundColor = "lightgrey";
+      });
+    </script>
+
+    <!-- Media event script-->
+
+    <script>
+      const audioPlayer = document.getElementById("audioPlayer");
+      const audioMessage = document.getElementById("audioMessage");
+
+      // `play` event - Shows message when playback starts
+      audioPlayer.addEventListener("play", () => {
+        audioMessage.textContent = "Audio is playing";
+        audioMessage.style.color = "green";
+      });
+
+      // `pause` event - Shows message when playback pauses
+      audioPlayer.addEventListener("pause", () => {
+        audioMessage.textContent = "Audio is paused";
+        audioMessage.style.color = "red";
+      });
+
+      // `ended` event - Shows message when playback ends
+      audioPlayer.addEventListener("ended", () => {
+        audioMessage.textContent = "Audio playback ended";
+        audioMessage.style.color = "blue";
+      });
+    </script>
+  </body>
+</html>
