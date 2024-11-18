@@ -7,7 +7,7 @@
   </head>
   <body>
     <!-- mouse -->
-    <button id="changeColorButton">Click to Change Color</button>
+    <!-- <button id="changeColorButton">Click to Change Color</button>
     <div
       id="hoverDiv"
       style="
@@ -18,24 +18,27 @@
       "
     >
       Hover Over Me
-    </div>
+    </div> -->
+
     <!-- form -->
-    <input
+    <!-- <input
       type="text"
       id="typingInput"
-      placeholder="Type something..."
+      placeholder="Typing..."
       style="margin-top: 20px; width: 200px"
     />
     <div id="output" style="margin-top: 10px; font-weight: bold">
       Typed Text Will Appear Here
-    </div>
+    </div> -->
 
     <!-- Window -->
     <div id="resizeMessage" style="margin-top: 20px">
       Resize the window to see the effect!
     </div>
+  
+
     <!-- Form -->
-    <form id="myForm" style="margin-top: 20px">
+    <!-- <form id="myForm" style="margin-top: 20px">
       <input
         type="text"
         id="nameField"
@@ -49,11 +52,8 @@
         required
       />
       <button type="submit">Submit</button>
-      <div id="formMessage" style="margin-top: 10px; font-weight: bold"></div>
-
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nam, officia
-      quasi molestiae dicta nobis voluptas doloremque eaque ex voluptates
     </form>
+    <div id="formMessage" style="margin-top: 10px; font-weight: bold"></div> -->
 
     <!-- Clipboard -->
     <textarea
@@ -68,14 +68,14 @@
 
     <!-- Media -->
 
-    <audio id="audioPlayer" controls style="margin-top: 20px">
-      <source src="audio.mp3" type="audio/mpeg" />
+    <!-- <audio id="audioPlayer" controls style="margin-top: 20px">
+      <source src="./audio.mp4" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
-    <div id="audioMessage" style="margin-top: 10px; font-weight: bold"></div>
+    <div id="audioMessage" style="margin-top: 10px; font-weight: bold"></div> -->
 
     <!-- drag drop events -->
-    <div
+    <!-- <div
       id="dragItem"
       draggable="true"
       style="width: 100px; height: 100px; background: coral; margin-top: 20px"
@@ -93,44 +93,41 @@
     >
       Drop Here
     </div>
-    <div id="dragMessage" style="margin-top: 10px; font-weight: bold"></div>
+    <div id="dragMessage" style="margin-top: 10px; font-weight: bold"></div> -->
 
     <!-- mouse event script-->
     <script>
       // `click` event - Changes the button color on click
-      document
-        .getElementById("changeColorButton")
-        .addEventListener("click", () => {
-          document.getElementById("changeColorButton").style.backgroundColor =
-            "purple";
-          document.getElementById("changeColorButton").textContent =
-            "Color Changed!";
-        });
+      const button = document.getElementById("changeColorButton");
+      button.addEventListener("click", () => {
+        button.style.backgroundColor = "purple";
+        button.textContent = "button clicked";
+      });
 
       // `dblclick` event - Resets the button color on double-click
       document
         .getElementById("changeColorButton")
         .addEventListener("dblclick", () => {
-          document.getElementById("changeColorButton").style.backgroundColor =
-            "";
-          document.getElementById("changeColorButton").textContent =
-            "Click to Change Color";
+          button.style.backgroundColor = "";
+          button.textContent = "Click to Change Color";
         });
 
       // `mouseover` and `mouseout` events - Changes the div background color on hover
       const hoverDiv = document.getElementById("hoverDiv");
+
       hoverDiv.addEventListener("mouseover", () => {
         hoverDiv.style.backgroundColor = "lightgreen";
         hoverDiv.textContent = "Mouse Over!";
       });
+
       hoverDiv.addEventListener("mouseout", () => {
         hoverDiv.style.backgroundColor = "lightblue";
         hoverDiv.textContent = "Hover Over Me";
       });
 
       // `mousemove` event - Display coordinates of mouse within the div
-      hoverDiv.addEventListener("mousemove", (event) => {
-        hoverDiv.textContent = `Mouse X: ${event.offsetX}, Y: ${event.offsetY}`;
+      hoverDiv.addEventListener("mousemove", (element) => {
+        hoverDiv.textContent = `Mouse X: ${element.offsetX}, Y: ${element.offsetY}`;
       });
     </script>
 
@@ -150,8 +147,8 @@
       });
 
       // `input` event - Displays typed text in the div
-      typingInput.addEventListener("input", (event) => {
-        outputDiv.textContent = event.target.value;
+      typingInput.addEventListener("input", (element) => {
+        outputDiv.textContent = element.target.value;
       });
     </script>
 
@@ -171,22 +168,23 @@
       document
         .getElementById("nameField")
         .addEventListener("focus", (event) => {
-          event.target.style.padding = "10px";
-          event.target.style.backgroundColor = "red";
+          formMessage.textContent = "typing";
+          formMessage.style.color = "red";
         });
+
       document.getElementById("nameField").addEventListener("blur", (event) => {
-        event.target.style.backgroundColor = "white";
+        formMessage.textContent = "";
       });
 
       document
         .getElementById("emailField")
         .addEventListener("focus", (event) => {
-          event.target.style.borderColor = "green";
+          event.target.style.backgroundColor = "green";
         });
       document
         .getElementById("emailField")
         .addEventListener("blur", (event) => {
-          event.target.style.borderColor = "";
+          event.target.style.backgroundColor = "";
         });
     </script>
 
@@ -202,13 +200,13 @@
 
       // `resize` event - Change message on window resize
       window.addEventListener("resize", () => {
-        resizeMessage.textContent = `Window resized to ${window.innerWidth}x${window.innerHeight}`;
+        resizeMessage.textContent = `Window resize ${window.innerHeight} and ${window.innerWidth}`;
       });
 
       // `scroll` event - Change background color on scroll
       window.addEventListener("scroll", () => {
         document.body.style.backgroundColor =
-          window.scrollY > 300 ? "red" : "#f0f8ff";
+          window.scrollY > 200 ? "blue" : "#f0f8ff";
       });
     </script>
 
