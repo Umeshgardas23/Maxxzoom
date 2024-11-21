@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+  <body>
+    <!-- fetch() -->
+    <!-- axios() -->
+    <!-- HTTPRequest() -->
+    <ol id="orderlist"></ol>
+    <!-- <button onclick="fetchdata()">Click me</button> -->
+    <script>
+      
+      fetchdata();
+      async function fetchdata() {
+        const res = await axios("https://jsonplaceholder.typicode.com/posts");
+
+        // const res1 = await fetch("https://jsonplaceholder.typicode.com/posts");
+        // const data= await res1.json();
+        console.log(res);
+
+        const data1 = res.data;
+
+        const orderlist = document.getElementById("orderlist");
+        if (res.status != 200) {
+          throw new Error("HTTP error");
+        }
+        data1.forEach((data) => {
+          const lielement = document.createElement("li");
+          // <li></li>
+          lielement.textContent = data.title;
+          lielement.style.color = "tomato";
+          lielement.style.paddingBottom = "20px";
+          lielement.className = "lielee";
+
+          // <li>sunt aut facere repellat provident occaecati excep</li>
+          orderlist.appendChild(lielement);
+        });
+      }
+
+      console.log("Printed");
+      console.log("Printed");
+      console.log("Printed");
+      
+    </script>
+  </body>
+</html>

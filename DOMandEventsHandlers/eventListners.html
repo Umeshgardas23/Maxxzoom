@@ -27,15 +27,15 @@
       placeholder="Typing..."
       style="margin-top: 20px; width: 200px"
     />
+    
     <div id="output" style="margin-top: 10px; font-weight: bold">
       Typed Text Will Appear Here
     </div> -->
 
     <!-- Window -->
-    <div id="resizeMessage" style="margin-top: 20px">
+    <!-- <div id="resizeMessage" style="margin-top: 20px">
       Resize the window to see the effect!
-    </div>
-  
+    </div> -->
 
     <!-- Form -->
     <!-- <form id="myForm" style="margin-top: 20px">
@@ -56,7 +56,7 @@
     <div id="formMessage" style="margin-top: 10px; font-weight: bold"></div> -->
 
     <!-- Clipboard -->
-    <textarea
+    <!-- <textarea
       id="clipboardArea"
       placeholder="Copy or paste text here"
       style="margin-top: 20px; width: 200px; height: 100px"
@@ -64,18 +64,18 @@
     <div
       id="clipboardMessage"
       style="margin-top: 10px; font-weight: bold"
-    ></div>
+    ></div> -->
 
     <!-- Media -->
 
-    <!-- <audio id="audioPlayer" controls style="margin-top: 20px">
+    <audio id="audioPlayer" controls style="margin-top: 20px">
       <source src="./audio.mp4" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
     <div id="audioMessage" style="margin-top: 10px; font-weight: bold"></div> -->
 
-    <!-- drag drop events -->
-    <!-- <div
+    <!-- drag drop events
+    <div
       id="dragItem"
       draggable="true"
       style="width: 100px; height: 100px; background: coral; margin-top: 20px"
@@ -93,17 +93,18 @@
     >
       Drop Here
     </div>
-    <div id="dragMessage" style="margin-top: 10px; font-weight: bold"></div> -->
+    <div id="dragMessage" style="margin-top: 10px; font-weight: bold"></div>
 
     <!-- mouse event script-->
     <script>
       // `click` event - Changes the button color on click
       const button = document.getElementById("changeColorButton");
-      button.addEventListener("click", () => {
-        button.style.backgroundColor = "purple";
-        button.textContent = "button clicked";
-      });
 
+      button.addEventListener("click", () => {
+        button.style.backgroundColor = "tomato";
+        button.innerText = "button clicked";
+      });
+     
       // `dblclick` event - Resets the button color on double-click
       document
         .getElementById("changeColorButton")
@@ -116,7 +117,7 @@
       const hoverDiv = document.getElementById("hoverDiv");
 
       hoverDiv.addEventListener("mouseover", () => {
-        hoverDiv.style.backgroundColor = "lightgreen";
+        hoverDiv.style.backgroundColor = "#f0f0f0";
         hoverDiv.textContent = "Mouse Over!";
       });
 
@@ -136,6 +137,7 @@
       //   Keyboard events
       const typingInput = document.getElementById("typingInput");
       const outputDiv = document.getElementById("output");
+
       // `keydown` event - Changes the text color on key down
       typingInput.addEventListener("keydown", () => {
         outputDiv.style.color = "blue";
@@ -147,8 +149,8 @@
       });
 
       // `input` event - Displays typed text in the div
-      typingInput.addEventListener("input", (element) => {
-        outputDiv.textContent = element.target.value;
+      typingInput.addEventListener("input", (item) => {
+        outputDiv.textContent = item.target;
       });
     </script>
 
@@ -165,17 +167,18 @@
       });
 
       // `focus` and `blur` events - Change border color of input fields
-      document
-        .getElementById("nameField")
-        .addEventListener("focus", (event) => {
-          formMessage.textContent = "typing";
+      document.getElementById("nameField").addEventListener("focus", (event) => {
+          formMessage.textContent = "user is typing";
+          document.getElementById("nameField").style.background="tomato"
           formMessage.style.color = "red";
         });
-
       document.getElementById("nameField").addEventListener("blur", (event) => {
-        formMessage.textContent = "";
-      });
+          formMessage.textContent = "";
+          document.getElementById("nameField").style.background="white"
+          formMessage.style.color = "white";
+        });
 
+     
       document
         .getElementById("emailField")
         .addEventListener("focus", (event) => {
@@ -208,6 +211,7 @@
         document.body.style.backgroundColor =
           window.scrollY > 200 ? "blue" : "#f0f8ff";
       });
+      
     </script>
 
     <!-- clipboard event script-->
@@ -266,7 +270,6 @@
     </script>
 
     <!-- Media event script-->
-
     <script>
       const audioPlayer = document.getElementById("audioPlayer");
       const audioMessage = document.getElementById("audioMessage");
@@ -289,5 +292,7 @@
         audioMessage.style.color = "blue";
       });
     </script>
+
+    <script src="script"></script>
   </body>
 </html>
