@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Desctructure
+      //   let obj = { id: 10, name: "anuj", country: "India" };
+      //   //   const id = obj.id;
+      //   //   const name = obj.name;
+      //   //   const country = obj.country;
+
+      //   const { id, name, country } = obj;
+
+      //   //   console.log(id);
+      //   //   console.log(name);
+
+      //   const arr = [10, 20, 30, 40, 50];
+      // const first = arr[0];
+      // const second = arr[1];
+      // console.log(arr[0], arr[1], arr[2], arr[3]);
+
+      //   const [f, s, t, fr] = arr;
+      //   console.log(f, s, t, fr);
+
+      // Rest operator => is used to collect a group of elements into a single array or object
+      //   syntax ...
+      //   function sum1(n1, n2, n3, n4, n5, n6, n7, n8) {
+      //     console.log(n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8);
+      //   }
+      //   rest in function parameter
+      //   function sum(...numbers) {
+      //     let total = 0;
+      //     for (let i = 0; i < numbers.length; i++) {
+      //       total += numbers[i];
+      //     }
+      //     return total;
+      //   }
+
+      //   console.log(sum(1, 2, 3, 4));
+      //   console.log(sum(1, 2, 3, 4, 5, 6, 7, 8));
+
+      //   const arr1 = [10, 20, 30, 40];
+      //   const [firstnumber, secondnum, ...restnumber] = [10, 20, 30, 40, 50];
+      //   //
+      //   console.log(firstnumber);
+      //   console.log(secondnum);
+      //   console.log(restnumber);
+
+      //   //   destructure obj
+      //   const person = { name: "anuj", age: 30, city: "mumbai" };
+      //   const { name: firstname, ...rest } = person;
+      //   console.log(firstname, rest);
+
+      //   sum(1, 2, 3, 4, 5, 6, 7, 8);
+
+      // Spread operator => is used to unpack element from array or properties from object into new array/object
+      //   copying an array
+      //   const arr2 = [1, 2, 3];
+      //   const arr3 = [...arr1];
+
+      //   //   combine an array
+      //   const arr4 = [1, 2, 3];
+      //   const arr5 = [5, 6, 7];
+      //   const combinedarr = [...arr4, ...arr5];
+      //   console.log(combinedarr);
+
+      //   //   Spreading element in function calls
+      //   const number = [30, 50, 60];
+      //   const maxnumber = Math.max(...number);
+      //   //   console.log(maxnumber);
+
+      //   //   combine an object
+      //   const person1 = { name: "john", age: 40 };
+      //   const person1copy = { ...person1 };
+      //   console.log(person1);
+      //   console.log(person1copy);
+
+      //   adding/updating properties in obj
+      //   const person2 = { name: "john", age: 40 };
+      //   const person2copy = { ...person1, city: "New york" };
+      //   console.log(person2);
+      //   console.log(person2copy);
+
+      // Map()
+
+      //   let map = new Map();
+      //   map.set("id", 10);
+      //   map.set(name, "anuj");
+      //   console.log(map);
+      //   console.log(map.size);
+      //   //   console.log(map.delete(name));
+      //   console.log(map.size);
+      //   console.log(map.has(name));
+      //   console.log(map.keys());
+      //   for (let key of map.key()) {
+      //     console.log(key);
+      //   }
+      //   console.log(map.values());
+
+      //   console.log(map.clear());
+      //   console.log(map);
+
+      //   // Set()
+
+      //   let set = new Set();
+      //   set.add("id", 20);
+
+      // Destucturing
+
+      //   let obj = { id: 10, name: "Anuj" };
+      //   let obj2 = { id: 20, name: "Amit" };
+      //   // const id = obj.id;
+      //   // const name = obj.name;
+
+      //   const { id, name } = obj;
+      //   const { id: obj2id, name: obj2name } = obj2;
+      //   console.log(id, name);
+      //   console.log(obj2id, obj2name);
+
+      //   const arr = [10, 20, 30, 40];
+
+      //   const first = arr[0];
+      //   const sec = arr[1];
+
+      //   const [f, s, thir] = arr;
+      //   console.log(f, s, thir);
+
+      // Rest operator => is used to collect a group of element into a single array or object
+      // syntax ...
+
+      //     function sum(...numbers) {
+      //       let total = 0;
+      //       for (i = 0; i < numbers.length; i++) {
+      //         total += numbers[i];
+      //       }
+      //       return total;
+      //     }
+      //     console.log(sum(10, 20, 30));
+      //     console.log(sum(10, 20, 30, 40));
+
+      //   const arr = [1, 2, 3, 4, 5];
+      // const [first, ...rest] = arr;
+      //   console.log(first);
+      //   console.log(rest);
+
+      //   const person1 = { name: "Shru", age: 35, city: "mumbai" };
+      //   const person2 = { name: "Amit", age: 20, city: "Pune" };
+      //   //   console.log(person.name);
+      //   //   console.log(person.age);
+      //   const { name, ...restvalue } = person1;
+      //   const { name: firstname, ...person2restvalue } = person2;
+      //   console.log(firstname);
+      //   console.log(typeof rest);
+
+      // Spread operator =>is used to unpack element from the array or properties from the object into a new array
+      //   copying an array
+      //   const arr1 = [1, 2, 3];
+      //   const arr2 = [...arr1];
+
+      //   combine array
+      //   const arr3 = [10, 20, 30];
+      //   const arr4 = [40, 50, 60];
+      //   const combinearray = [...arr3, ...arr4];
+      //   console.log(combinearray);
+
+      //   //   spreading the element in function
+      //   const number = [99, 69, 49];
+      //   const maxnumber = Math.min(...number);
+      //   console.log(maxnumber);
+
+      //   //copy object
+      //   const person1 = { name: "john", age: 40 };
+      //   const person2 = { ...person1, city: "mumbai" };
+      //   console.log(person1);
+      //   console.log(person2);
+
+      // Map()
+      let map = new Map();
+      map.set("id", 20);
+      map.set("firstn", "amol");
+      console.log(map.size);
+      //   console.log(map.delete("firstn"));
+      //   console.log(map.clear());
+      console.log(typeof map);
+      console.log(map);
+
+      // Set()
+      let set = new Set();
+      set.add();
+
+      
+    </script>
+  </body>
+</html>

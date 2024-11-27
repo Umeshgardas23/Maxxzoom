@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        min-height: 200px;
+        min-width: 200px;
+        border: 1px solid black;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Event Bubbling -->
+    <!-- cnl+/ -->
+    <!--alt+shift+a -->
+    <div id="grandparent">
+      Grandparent
+      <div id="parent">
+        Parent
+        <div id="child">Child</div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector("#grandparent").addEventListener(
+        "click",
+        (e) => {
+          console.log("GrandParent called");
+          e.stopPropagation();
+        },
+        true
+      );
+      document.querySelector("#parent").addEventListener(
+        "click",
+        (e) => {
+          console.log("Parent called");
+          e.stopPropagation();
+        },
+        true
+      );
+      document.querySelector("#child").addEventListener(
+        "click",
+        (e) => {
+          console.log("Child called");
+          e.stopPropagation();
+        },
+        true
+      );
+    </script>
+
+    <!-- Event capturing -->
+  </body>
+</html>
