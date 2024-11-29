@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    /* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container Styles */
+.todo-container {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Header Styles */
+h1 {
+  font-size: 1.8rem;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input and Button Styles */
+input[type="text"] {
+  width: calc(100% - 80px);
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #0056b3;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #ffffff;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* To-Do List Styles */
+ul {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: #6c757d;
+  background: #e9ecef;
+}
+
+li:hover {
+  background: #e2e6ea;
+}
+
+/* Buttons inside List Items */
+li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background: #dc3545;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+li button:first-of-type {
+  background: #28a745;
+}
+
+li button:hover {
+  background: #c82333;
+}
+
+li button:first-of-type:hover {
+  background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  input[type="text"] {
+    width: calc(100% - 90px);
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <div class="todo-container mt-20 d:flex">
+    <input type="text" id="todo-input" placeholder="Add a new task">
+    <button id="add-btn">Add</button>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script>
+    // Initialize tasks from localStorage
+    const todoList = document.getElementById("todo-list");
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    // Function to save tasks to localStorage
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // Function to render tasks
+    function renderTasks() {
+      todoList.innerHTML = ""; // Clear current tasks
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = task.completed ? "completed" : "";
+        li.innerHTML = `
+          ${task.text}
+          <div>
+            <button onclick="toggleTask(${index})">✔</button>
+            <button onclick="deleteTask(${index})">❌</button>
+          </div>
+        `;
+        todoList.appendChild(li);
+      });
+    }
+
+    // Add a new task
+    document.getElementById("add-btn").addEventListener("click", () => {
+      const input = document.getElementById("todo-input");
+      if (input.value.trim()) {
+        tasks.push({ text: input.value, completed: false });
+        input.value = ""; // Clear input
+        saveTasks();
+        renderTasks();
+      }
+    });
+
+    // Toggle task completion
+    window.toggleTask = function(index) {
+      tasks[index].completed = !tasks[index].completed;
+      saveTasks();
+      renderTasks();
+    };
+
+    // Delete a task
+    window.deleteTask = function(index) {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
+    };
+
+    // Initial render
+    renderTasks();
+  </script>
+</body>
+</html>

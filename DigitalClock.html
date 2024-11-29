@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* styles.css */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(
+          to left bottom,
+          #4facfe,
+          red,
+          orange,
+          yellow,
+          green,
+          #00f2fe
+        );
+        color: #fff;
+      }
+
+      .clock-container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px 40px;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      #clock {
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock-container">
+      <h1 id="clock">00:00:00 AM</h1>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      // script.js
+
+      function updateClock() {
+        const clockElement = document.getElementById("clock");
+        const now = new Date();
+
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ampm = hours >= 12 ? "PM" : "AM";
+
+        // Convert 24-hour format to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0 should be shown as 12
+
+        const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(
+          seconds
+        )} ${ampm}`;
+        clockElement.textContent = formattedTime;
+      }
+
+      function padZero(num) {
+        return num < 10 ? `0${num}` : num;
+      }
+
+      // Update clock every second
+      setInterval(updateClock, 1000);
+
+      // Initialize the clock immediately
+      updateClock();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .search {
+        margin-bottom: 20px;
+      }
+
+      .search input {
+        padding: 10px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .search button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .search button:hover {
+        background-color: #0056b3;
+      }
+
+      #weather-result {
+        margin-top: 20px;
+      }
+
+      #weather-result p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Weather App</h1>
+      <div class="search">
+        <input
+          type="text"
+          id="city"
+          placeholder="Search by city"
+          onkeydown="checkEnter(event)"
+        />
+      </div>
+      <div id="weather-result">
+        <h2 id="city-name"></h2>
+        <p id="temperature"></p>
+        <p id="humidity"></p>
+        <p id="description"></p>
+      </div>
+    </div>
+    <script>
+      const apiKey = "7315019144a7fd9169cb5b0d37bb5693"; // Replace with your OpenWeatherMap API key
+    //   document.addEventListener("DOMContentLoaded", loadweatherData());
+      function checkEnter(event) {
+        if (event.key === "Enter") {
+          getWeather();
+        }
+        console.log(event);
+      }
+      async function getWeather() {
+        const city = document.getElementById("city").value;
+
+        if (!city) {
+          alert("Please enter city name");
+          return;
+        }
+        const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+        try {
+          const resoponse = await fetch(apiURL);
+          const data = await resoponse.json();
+
+          document.getElementById("city-name").innerText = `City: ${data.name}`;
+          document.getElementById(
+            "temperature"
+          ).innerText = `Temperature: ${data.main.temp}`;
+          document.getElementById(
+            "humidity"
+          ).innerText = `Humidity: ${data.main.humidity}`;
+          document.getElementById(
+            "description"
+          ).innerText = `Weather: ${data.weather[0].description}`;
+          console.log(data, "data");
+          const arr = [];
+          arr.push({
+            Cityname: data.name,
+            Temperature: data.main.temp,
+            Humidity: data.main.humidity,
+            Weather: data.weather[0].description,
+          });
+          localStorage.setItem("Weather", JSON.stringify(arr));
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+
+    //   async function loadweatherData() {
+    //     const getWeather = localStorage.getItem("Weather");
+    //     if (!getWeather) return;
+
+    //     JSON.parse(getWeather).forEach((city) => {
+    //       document.getElementById("city-name").innerText = `City: ${city.Cityname}`;
+    //       document.getElementById(
+    //         "temperature"
+    //       ).innerText = `Temperature: ${city.Temperature}`;
+    //       document.getElementById(
+    //         "humidity"
+    //       ).innerText = `Humidity: ${city.Humidity}`;
+    //       document.getElementById(
+    //         "description"
+    //       ).innerText = `Weather: ${city.Weather}`;
+    //     });
+    //   }
+
+    </script>
+  </body>
+</html>
